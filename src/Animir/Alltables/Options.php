@@ -4,7 +4,7 @@
  *
  * @author Animir
  */
-namespace Animir\Alltables\Resource;
+namespace Animir\Alltables;
 
 use Zend\Stdlib\AbstractOptions;
 

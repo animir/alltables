@@ -1,29 +1,36 @@
 <?php
 /**
- * Description of Resource
- *
  * @author Animir
  */
 namespace Animir\Alltables\Resource;
 
-use Options;
+use Animir\Alltables\Options;
 
 class Resource {
     /**
-     * @var \Animir\Alltables\Resource\Options
+     * @var \Animir\Alltables\Options
      */
     protected $options;
-    protected $resource;
+    /**
+     * @var resource
+     */
+    protected $handler;
      
-    public function get() {
-        $srcPrefix = is_null($this->options->handler) ? '' : $this->options->handler . '://';
-        if (!is_resource($this->resource)) {
-            $this->resource = fopen( $srcPrefix . $this->getSrc(), 'r');
+    public function getHandler() {
+        $srcPrefix = is_null($this->options->wrapper) ? '' : $this->options->wrapper . '://';
+        if (!is_resource($this->handler)) {
+            $this->handler = fopen( $srcPrefix . $this->options->src, 'r');
         }
-        return $this->resource;
+        return $this->handler;
     }
     
-    public function __construct(array $config) {
-        $this->options = new Options($config);
+    public function __construct(Animir\Alltables\Options $options) {
+        $this->options = $options;
+    }
+    public function __destruct() {
+        fclose($this->handler);
+    }
+    public function close() {
+        fclose($this->handler);
     }
 }

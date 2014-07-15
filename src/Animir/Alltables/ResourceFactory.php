@@ -1,10 +1,9 @@
 <?php
-namespace \Animir\Alltables\Resource;
+namespace \Animir\Alltables\Resource\REsource;
 
 class ResourceFactory {
-    static function factory(array $config) {
-        $resource = new Resource($config);
-        return $resource->get();
+    static function factory(Animir\Alltables\Options $config) {
+        return new Resource($config);
     }
 }
 

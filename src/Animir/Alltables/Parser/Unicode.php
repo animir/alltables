@@ -1,9 +1,9 @@
 <?php
 namespace \Animir\Alltables\Parser;
 
-class Unicode implements ParserInterface {
+class Unicode extends AbstractParser {
     public function parse() {
-        ;
+        $this->getResource()->getHandler();
     }
     
     
