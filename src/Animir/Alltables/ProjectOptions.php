@@ -21,7 +21,13 @@ class ProjectOptions {
             'src_dir' => 'Public/UCD/latest/ucdxml',
             'filename' => 'ucd.nounihan.flat.zip',
             'filename_in_arch' => 'ucd.nounihan.flat.xml',
-            'header' => ['cp' => 'Code point', 'na' => 'Name', 'na1' => 'Alt name']
+            'header' => ['cp' => 'Code point', 
+                         'sym' => 'Symbol', 
+                         'html' => 'HTML spec', 
+                         'htmldec' => 'HTML numerical', 
+                         'url' => 'URL encode' ,
+                         'na' => 'Name', 
+                         'na1' => 'Alt name']
         ]
     ];
     /**

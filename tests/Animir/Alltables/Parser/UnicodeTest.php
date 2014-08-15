@@ -14,7 +14,9 @@ class UnicodeTest extends \PHPUnit_Framework_TestCase {
 
     public function testParseNode() {
         $parser = ParserFactory::factory('unicode', ProjectOptions::getOptions());
-        print_r($parser->parse());
+        echo '<pre>';
+        print_r($parser->getArray());
+        echo '</pre>';
     }
 
 }

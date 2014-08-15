@@ -4,10 +4,7 @@ namespace Animir\Alltables\Parser;
 use Animir\Alltables\ProjectOptions;
 
 abstract class AbstractParser {
-    /**
-     *
-     * @var Animir\Alltables\Options
-     */
+
     protected $options;
     
     /**
@@ -16,7 +13,6 @@ abstract class AbstractParser {
     protected $resource;
     
     abstract public function parse();
-    abstract public function prepareToStore($data);
     
     protected function filterRowByConfig($array) {
         if (!isset($this->options['header'])) return $array;
@@ -29,8 +25,38 @@ abstract class AbstractParser {
         return $resultArray;
     }
     
-    public function store() {
+    public function store(array $data) {
         $options = ProjectOptions::getSpecOptions('alltables');
+        $file = fopen($options['save_path'] . $this->options['name'] . '.allt', 'wb');
+        foreach ($data as $row) {
+            fputcsv($file, $row);
+        }
+        fclose($file);
+    }
+    
+    public function load() {
+        $data = [];
+        $options = ProjectOptions::getSpecOptions('alltables');
+        $file = fopen($options['save_path'] . $this->options['name'] . '.allt', 'rb');
+        while (($row = fgetcsv($file)) !== false ) {
+            $data[]=$row;
+        }
+        fclose($file);
+        return $data;
+    }
+    
+    public function getArray() {
+        if ($this->parsedDataExists() === false) {
+            $data = $this->parse();
+            $this->store($data);
+        } else {
+            $data = $this->load();
+        }
+        return $data;
+    }
+    
+    public function parsedDataExists() {
+        return file_exists(ProjectOptions::getSpecOptions('alltables')['save_path'] . $this->options['name'] . '.allt');
     }
     
     public function getResource() {
