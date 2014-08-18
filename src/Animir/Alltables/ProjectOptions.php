@@ -72,7 +72,7 @@ class ProjectOptions {
     public static function getAllParsersShortInfo() {
         $result = [];
         foreach (self::$options as $option) {
-            $result[$option['name']] = [$option['title']];
+            $result[$option['name']] = ['title' => $option['title']];
         }
         
         return $result;
