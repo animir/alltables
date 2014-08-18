@@ -50,8 +50,7 @@ abstract class AbstractParser {
      * @return bool
      */
     public function store(array $data) {
-        $options = ProjectOptions::getSpecOptions('alltables');
-        $file = fopen($options['save_path'] . $this->options['name'] . '.allt', 'wb');
+        $file = fopen($this->getStoreFilename(), 'wb');
         foreach ($data as $row) {
             fputcsv($file, $row);
         }
@@ -67,13 +66,23 @@ abstract class AbstractParser {
     
     public function load() {
         $data = [];
-        $options = ProjectOptions::getSpecOptions('alltables');
-        $file = fopen($options['save_path'] . $this->options['name'] . '.allt', 'rb');
+        $file = fopen($this->getStoreFilename(), 'rb');
         while (($row = fgetcsv($file)) !== false ) {
             $data[]=$row;
         }
         fclose($file);
         return $data;
+    }
+    
+    /**
+     * Get filename for storing data
+     * 
+     * @return string
+     */
+    public function getStoreFilename() {
+        return ProjectOptions::getProjectOptions()['save_path'] . 
+               $this->options['name'] . 
+               '.' . ProjectOptions::getProjectOptions()['file_ext'];
     }
     
     /**
@@ -99,7 +108,7 @@ abstract class AbstractParser {
      */
     
     public function parsedDataExists() {
-        return file_exists(ProjectOptions::getSpecOptions('alltables')['save_path'] . $this->options['name'] . '.allt');
+        return file_exists(ProjectOptions::getProjectOptions()['save_path'] . $this->options['name'] . '.allt');
     }
     
     /**

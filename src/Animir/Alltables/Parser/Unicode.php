@@ -18,8 +18,8 @@ class Unicode extends AbstractParser {
 
         $parser = XmlStringStreamer::createUniqueNodeParser($resource, $options);
         $i = 1;
-        $resultArray = [ProjectOptions::getSpecOptions('unicode')['header']];
-        while (($charInfo = $parser->getNode()) && $i <= 512) {
+        $resultArray = [ProjectOptions::getSpecParserOptions('unicode')['header']];
+        while (($charInfo = $parser->getNode()) && $i <= ProjectOptions::getSpecParserOptions('unicode')['cnt_rows']) {
             $i++;
             $simpleXmlNode = simplexml_load_string($charInfo);
             $attrs = $simpleXmlNode->attributes();

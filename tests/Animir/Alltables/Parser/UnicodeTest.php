@@ -11,12 +11,18 @@ use Animir\Alltables\ParserFactory;
 use Animir\Alltables\ProjectOptions;
 
 class UnicodeTest extends \PHPUnit_Framework_TestCase {
-
-    public function testParseNode() {
-        $parser = ParserFactory::factory('unicode', ProjectOptions::getOptions());
-        echo '<pre>';
-        print_r($parser->getArray());
-        echo '</pre>';
+    private $parser;
+    
+    public function setUp() {
+        $this->parser =  $parser = ParserFactory::factory('unicode', ProjectOptions::getAllParsersOptions());
+    }
+    
+    public function testData() {
+        $data = $this->parser->getArray();
+        $this->assertNotEmpty($data);
+    }
+    public function tearDown() {
+        unset($this->parser);
     }
 
 }
