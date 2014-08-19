@@ -28,6 +28,10 @@ class Unicode extends AbstractParser {
                 $data[$k] = $attr->__toString();
             }
             
+            if (trim($data['na']) == '') {
+                $data['na'] = $data['na1'];
+            }
+            
             $data['sym'] = mb_convert_encoding('&#' . hexdec($data['cp']) . ';', 'UTF-8', 'HTML-ENTITIES');
             $data['htmldec'] = htmlentities('&#' . hexdec($data['cp']) . ';');
             $data['html'] = isset($htmlTransTable[$data['sym']]) ? htmlentities($htmlTransTable[$data['sym']]) : '';

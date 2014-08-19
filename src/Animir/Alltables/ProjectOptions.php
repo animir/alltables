@@ -28,8 +28,8 @@ class ProjectOptions {
                          'html' => 'HTML spec', 
                          'htmldec' => 'HTML numerical', 
                          'url' => 'URL encode' ,
-                         'na' => 'Name', 
-                         'na1' => 'Alt name'],
+                         'na' => 'Name'
+                                ],
             'imp_fields' => ['sym'],// *
             'title' => 'Unicode' // *
         ]
