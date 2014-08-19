@@ -67,13 +67,13 @@ abstract class AbstractParser {
     public function load() {
         $data = [];
         $file = fopen($this->getStoreFilename(), 'rb');
-        while (($row = fgetcsv($file)) !== false ) {
-            $data[]=$row;
+        while (($row = fgetcsv($file, 0, ',', '"', '"')) !== false) {
+            $data[] = $row;
         }
         fclose($file);
         return $data;
     }
-    
+
     /**
      * Get filename for storing data
      * 
