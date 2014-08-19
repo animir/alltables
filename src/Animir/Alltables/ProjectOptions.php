@@ -30,6 +30,7 @@ class ProjectOptions {
                          'url' => 'URL encode' ,
                          'na' => 'Name', 
                          'na1' => 'Alt name'],
+            'imp_fields' => ['sym'],// *
             'title' => 'Unicode' // *
         ]
     ];
@@ -77,4 +78,25 @@ class ProjectOptions {
         
         return $result;
     }
+    
+    /**
+     * Get positions of important fields in array
+     * 
+     * @param string $blockName
+     * @return array
+     */
+    public static function getSpecParserImpFieldsPositions($blockName) {
+        if (isset(self::$options[$blockName]) && isset(self::$options[$blockName]['imp_fields'])) {
+            $fields = array_keys(self::$options[$blockName]['header']);
+            $impFieldsNumArray = [];
+            foreach (self::$options[$blockName]['imp_fields'] as $impField) {
+                if (($pos = array_search($impField, $fields)) !== false) {
+                    $impFieldsNumArray[] = $pos;
+                }
+            }
+            return $impFieldsNumArray;
+        }
+        return [];
+    }
+
 }

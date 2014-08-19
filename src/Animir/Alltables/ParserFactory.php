@@ -26,7 +26,7 @@ class ParserFactory {
         }
         
         if (!isset($allOptions[$name])) {
-            throw new \Exception('Options for parser ' . $name . 'not exists.');
+            throw new \Exception('Options for parser ' . $name . ' not exists.');
         }
         
         $className = ucfirst($name);   
