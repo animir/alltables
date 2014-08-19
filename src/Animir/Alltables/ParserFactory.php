@@ -26,12 +26,12 @@ class ParserFactory {
         }
         
         if (!isset($allOptions[$name])) {
-            throw new Exception('Options for parser ' . $name . 'not exists.');
+            throw new \Exception('Options for parser ' . $name . 'not exists.');
         }
         
         $className = ucfirst($name);   
         if (!class_exists('Animir\\Alltables\\Parser\\' . $className)) {
-            throw new Exception('Parser with class name ' . $className . ' not exists');
+            throw new \Exception('Parser with class name ' . $className . ' not exists');
         }
         
         $parserClassName = __NAMESPACE__ . '\\Parser\\' . $className;
