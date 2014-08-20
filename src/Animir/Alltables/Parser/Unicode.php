@@ -32,7 +32,7 @@ class Unicode extends AbstractParser {
                 $data['na'] = $data['na1'];
             }
             
-            $data['sym'] = mb_convert_encoding('&#' . hexdec($data['cp']) . ';', 'UTF-8', 'HTML-ENTITIES');
+            $data['sym'] = trim(mb_convert_encoding('&#' . hexdec($data['cp']) . ';', 'UTF-8', 'HTML-ENTITIES'));
             $data['htmldec'] = htmlentities('&#' . hexdec($data['cp']) . ';');
             $data['html'] = isset($htmlTransTable[$data['sym']]) ? htmlentities($htmlTransTable[$data['sym']]) : '';
             $data['url'] = bin2hex(ltrim(hex2bin($data['cp']))) != '' ? htmlentities('%' . bin2hex(ltrim(hex2bin($data['cp'])))) : '';
