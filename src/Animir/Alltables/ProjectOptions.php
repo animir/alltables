@@ -32,6 +32,19 @@ class ProjectOptions {
                                 ],
             'imp_fields' => ['sym'],// *
             'title' => 'Unicode' // *
+        ],
+        'PhpFopenMode' => [
+            'name' => 'PhpFopenMode',
+            'type' => 'http',
+            'wrapper' => 'html',
+            'src_name' => 'php.net',
+            'src_dir' => 'manual/en',
+            'filename' => 'function.fopen.php',
+            'header' => [
+                        'mode' => 'Mode',
+                        'description' => 'Description'
+            ],
+            'title' => 'PHP. Possible modes for fopen()'
         ]
     ];
     /**

@@ -28,6 +28,7 @@ abstract class AbstractParser {
     
     /**
      * Filter $array according to 'header' param in ProjectOptions
+     * If option 'header' is not set, all $data return
      * 
      * @param array $data
      * @return array

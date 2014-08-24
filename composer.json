@@ -12,7 +12,7 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "https://packages.zendframework.com/"
+            "url": "https://packages.zendframework.com/"       
         }
     ],
     "require": {
@@ -20,7 +20,8 @@
         "zendframework/zend-cache": "2.3.*",
         "zendframework/zend-stdlib": "2.3.*",
         "zendframework/zend-config": "2.3.*",
-        "prewk/xml-string-streamer": "~0.6.1"
+        "prewk/xml-string-streamer": "~0.6.1",
+        "animir/html-to-array": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "4.1.*"
