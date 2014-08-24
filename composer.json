@@ -13,6 +13,10 @@
         {
             "type": "composer",
             "url": "https://packages.zendframework.com/"       
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/animir/html-to-array"            
         }
     ],
     "require": {
