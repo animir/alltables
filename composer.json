@@ -14,7 +14,7 @@
             "url": "https://packages.zendframework.com/"       
         },
         {
-            "type": "git",
+            "type": "vcs",
             "url": "https://github.com/animir/html-to-array"            
         }
     ],
