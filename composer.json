@@ -2,6 +2,7 @@
     "name": "animir/alltables",
     "description": "All tables",
     "license": "MIT",
+    "type": "project",
     "authors": [
         {
             "name": "Animir",
@@ -12,10 +13,6 @@
         {
             "type": "composer",
             "url": "https://packages.zendframework.com/"       
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/animir/html-to-array"            
         }
     ],
     "require": {
@@ -24,7 +21,7 @@
         "zendframework/zend-stdlib": "2.3.*",
         "zendframework/zend-config": "2.3.*",
         "prewk/xml-string-streamer": "~0.6.1",
-        "animir/html-to-array": "~0.0.1"
+        "animir/html-to-array": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "4.1.*"
