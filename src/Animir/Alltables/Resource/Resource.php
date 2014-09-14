@@ -20,7 +20,7 @@ class Resource {
             if (method_exists($this,  $methodName)) {
                 $this->handler = $this->$methodName();
             } else {
-                throw new Exception('Method with name  "' . $methodName . '" not exists in class "Resource"');
+                throw new \Exception('Method with name  "' . $methodName . '" not exists in class "Resource"');
             }
 
             if (!$this->handler) {
@@ -41,6 +41,10 @@ class Resource {
     }
     
     private function getHttpHtmlHandler() {
+        return fopen($this->options['type'] . '://' . $this->options['src_name'] . '/' . $this->options['src_dir'] . '/' . $this->options['filename'], 'r');
+    }
+    
+    private function getHttpTxtHandler() {
         return fopen($this->options['type'] . '://' . $this->options['src_name'] . '/' . $this->options['src_dir'] . '/' . $this->options['filename'], 'r');
     }
 

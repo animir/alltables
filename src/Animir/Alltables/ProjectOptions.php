@@ -45,6 +45,19 @@ class ProjectOptions {
                         'description' => 'Description'
             ],
             'title' => 'PHP. Possible modes for fopen()'
+        ],
+        'PCRE' => [
+            'name' => 'PCRE',
+            'type' => 'http',
+            'wrapper' => 'txt',
+            'src_name' => 'pcre.org',
+            'src_dir' => '',
+            'filename' => 'pcre.txt',
+            'header' => [
+                'char' => 'Character | Quantifier',
+                'legend' => 'Legend'
+            ],
+            'title' => 'PCRE'
         ]
     ];
     /**
