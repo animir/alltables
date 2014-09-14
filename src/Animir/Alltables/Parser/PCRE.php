@@ -11,11 +11,13 @@ namespace Animir\Alltables\Parser;
 use Animir\Alltables\ProjectOptions;
 use Groff\Groff;
 use HtmlToArray\Translator;
+use Animir\Alltables\Table\TableArray;
 
 class PCRE extends AbstractParser {
 
     public function parse() {
-        $resultArray = [ProjectOptions::getSpecParserOptions('PCRE')['header']];
+        $tableArray = new TableArray();
+        $tableArray->addRow(ProjectOptions::getSpecParserOptions('PCRE')['header']);
         $resource = $this->getResource()->getHandler();
         $mandoc = stream_get_contents($resource);
         $groff = new Groff();
@@ -41,18 +43,19 @@ class PCRE extends AbstractParser {
             if (!is_array($firstRows)) {
                 $firstRows = (array) $firstRows;
             }
+            $tableArray->addSubHeader($header);
             foreach ($firstRows as $firstRow) {
                 $manPart = $groff->getManPart($mandoc, $header);
                 $tableString = $groff->getTable($manPart, $firstRow);
                 if (is_null($tableString)) {
                     throw new \Exception("PCRE something wrong with part mandoc ('$header' -> '$firstRow')");
                 }
-                $resultArray = array_merge($resultArray, $groff->getArrayFromTable($tableString));
+                $tableArray->addRows($groff->getArrayFromTable($tableString));
             }
         }
 
 
-        return $resultArray;
+        return $tableArray->getArray();
     }
 
 }
