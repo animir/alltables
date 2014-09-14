@@ -6,6 +6,7 @@ namespace Animir\Alltables\Table;
  * @author animir
  */
 class TableArray{
+    CONST HEADER_KEY = '__h2__';
     private $_array = [];
     
     /**
@@ -51,7 +52,7 @@ class TableArray{
      */
     public function addSubHeader($row) {
         if (!is_scalar($row)) return null;
-        $this->_array[]= ['__h2__' => $row];
+        $this->_array[]= [self::HEADER_KEY => $row];
         return $this;
     }
     
