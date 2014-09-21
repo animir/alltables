@@ -14,6 +14,22 @@ use HtmlToArray\Translator;
 use Animir\Alltables\Table\TableArray;
 
 class PCRE extends AbstractParser {
+    
+    public static function getDefaultOptions() {
+        return [
+            'name' => 'PCRE',
+            'type' => 'http',
+            'wrapper' => 'txt',
+            'src_name' => 'pcre.org',
+            'src_dir' => '',
+            'filename' => 'pcre.txt',
+            'header' => [
+                'char' => 'Character | Quantifier',
+                'legend' => 'Legend'
+            ],
+            'title' => 'PCRE'
+        ];
+    }
 
     public function parse() {
         $tableArray = new TableArray();
@@ -58,20 +74,4 @@ class PCRE extends AbstractParser {
         return $tableArray->getArray();
     }
     
-    public static function getDefaultOptions() {
-        return [
-            'name' => 'PCRE',
-            'type' => 'http',
-            'wrapper' => 'txt',
-            'src_name' => 'pcre.org',
-            'src_dir' => '',
-            'filename' => 'pcre.txt',
-            'header' => [
-                'char' => 'Character | Quantifier',
-                'legend' => 'Legend'
-            ],
-            'title' => 'PCRE'
-        ];
-    }
-
 }

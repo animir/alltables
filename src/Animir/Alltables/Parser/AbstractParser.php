@@ -18,20 +18,21 @@ abstract class AbstractParser {
      * @var Animir\Alltables\Resource\Resource
      */
     protected $resource;
-    /**
-     * Parse resource with config from ProjectOptions class and return data
-     * 
-     * @return array
-     */
-    abstract public function parse();
     
-    /**
+     /**
      * Get array of options for parser
      * 
      * @return array
      */
     abstract public static function getDefaultOptions();
     
+    /**
+     * Parse resource with config from ProjectOptions class and return data
+     * 
+     * @return array
+     */
+    abstract public function parse();
+        
     /**
      * Filter $array according to 'header' param in ProjectOptions
      * If option 'header' is not set, all $data return

@@ -7,6 +7,29 @@ use Animir\Alltables\ProjectOptions;
 
 class Unicode extends AbstractParser {
 
+    public static function getDefaultOptions() {
+        return [
+            'name' => 'unicode', // *
+            'type' => 'ftp', // *
+            'wrapper' => 'zip', // *
+            'src_name' => 'www.unicode.org', // *
+            'src_dir' => 'Public/UCD/latest/ucdxml',
+            'filename' => 'ucd.nounihan.flat.zip',
+            'filename_in_arch' => 'ucd.nounihan.flat.xml',
+            'cnt_rows' => 512,
+            'header' /* * */ => ['cp' => 'Code point', 
+                         'sym' => 'Symbol', 
+                         'html' => 'HTML spec', 
+                         'htmldec' => 'HTML numerical', 
+                         'url' => 'URL encode' ,
+                         'na' => 'Name'
+                                ],
+            'imp_fields' => ['sym'],// *
+            'title' => 'Unicode', // *
+            //'expire' => 
+        ];
+    }
+
     public function parse() {
         $htmlTransTable = get_html_translation_table(HTML_ENTITIES, ENT_QUOTES | ENT_HTML5);
 
@@ -43,27 +66,4 @@ class Unicode extends AbstractParser {
         return $resultArray;
     }
     
-    public static function getDefaultOptions() {
-        return [
-            'name' => 'unicode', // *
-            'type' => 'ftp', // *
-            'wrapper' => 'zip', // *
-            'src_name' => 'www.unicode.org', // *
-            'src_dir' => 'Public/UCD/latest/ucdxml',
-            'filename' => 'ucd.nounihan.flat.zip',
-            'filename_in_arch' => 'ucd.nounihan.flat.xml',
-            'cnt_rows' => 512,
-            'header' /* * */ => ['cp' => 'Code point', 
-                         'sym' => 'Symbol', 
-                         'html' => 'HTML spec', 
-                         'htmldec' => 'HTML numerical', 
-                         'url' => 'URL encode' ,
-                         'na' => 'Name'
-                                ],
-            'imp_fields' => ['sym'],// *
-            'title' => 'Unicode', // *
-            //'expire' => 
-        ];
-    }
-
 }
