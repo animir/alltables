@@ -74,6 +74,19 @@ abstract class AbstractParser {
         fclose($file);
         return $data;
     }
+    /**
+     * Check is stored data actual or not
+     * 
+     * @return boolean
+     */
+    public function isFileActual() {
+        $expire = isset($this->options['expire']) ? $this->options['expire'] : ProjectOptions::getProjectOptions()['expire'];
+        
+        if ($this->parsedDataExists() === false || (filemtime($this->getStoreFilename()) + $expire) < time()) {
+            return false;
+        }
+        return true;
+    }
 
     /**
      * Get filename for storing data
@@ -93,7 +106,7 @@ abstract class AbstractParser {
      * @return array
      */
     public function getArray() {
-        if ($this->parsedDataExists() === false) {
+        if ($this->isFileActual() === false) {
             $data = $this->parse();
             $this->store($data);
         } else {

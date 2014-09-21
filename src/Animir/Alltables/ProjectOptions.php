@@ -11,7 +11,8 @@ class ProjectOptions {
     static protected $instance;
     static protected $projectOptions = [
             'save_path' => '/tmp/',
-            'file_ext' => 'allt'
+            'file_ext' => 'allt',
+            'expire' => 86400 // 60*60*24
     ];
     static protected $options = [
         'unicode' => [
@@ -31,7 +32,8 @@ class ProjectOptions {
                          'na' => 'Name'
                                 ],
             'imp_fields' => ['sym'],// *
-            'title' => 'Unicode' // *
+            'title' => 'Unicode', // *
+            //'expire' => 
         ],
         'PhpFopenMode' => [
             'name' => 'PhpFopenMode',
