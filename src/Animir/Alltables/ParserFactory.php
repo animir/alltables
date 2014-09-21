@@ -6,27 +6,20 @@
  */
 namespace Animir\Alltables;
 
-use Animir\Alltables\Parser as Parser;
-use Animir\Alltables\Options;
-
 class ParserFactory {
     /**
      * 
      * @param string $name
-     * @param array $allOptions
      * @return \Animir\Alltables\AbstractParser|null
      * @throws Exception
      */
-    static public function factory($name, $allOptions) {        
-        if (!is_array($allOptions)) {
-            $allOptions = (array) $allOptions;
-        }
+    static public function factory($name) {        
         if (!is_string($name)) {
             return null;
         }
         
-        if (!isset($allOptions[$name])) {
-            throw new \Exception('Options for parser ' . $name . ' not exists.');
+        if (!ProjectOptions::isParserActive($name)) {
+            throw new \Exception('Parser ' . $name . ' unable.');
         }
         
         $className = ucfirst($name);   
@@ -36,7 +29,7 @@ class ParserFactory {
         
         $parserClassName = __NAMESPACE__ . '\\Parser\\' . $className;
         $parser = new $parserClassName();
-        $parser->setOptions($allOptions[$name]);
+        $parser->setOptions($parserClassName::getDefaultOptions());
         $parser->setResource(ResourceFactory::factory($parser->getOptions()));
 
         return $parser;

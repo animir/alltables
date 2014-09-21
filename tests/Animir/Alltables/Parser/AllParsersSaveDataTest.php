@@ -15,7 +15,7 @@ class AllParsersSaveDataTest extends \PHPUnit_Framework_TestCase {
 
     public function testSaveFiles() {
         foreach(ProjectOptions::getAllParsersShortInfo() as $name => $options) {
-            $parser = ParserFactory::factory($name, ProjectOptions::getAllParsersOptions());
+            $parser = ParserFactory::factory($name);
             $this->assertNotEmpty($parser->getArray(), 'Parser ' . $name . ' get empty data');
             
             $filename = $parser->getStoreFilename();

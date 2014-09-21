@@ -8,7 +8,7 @@ use HtmlToArray\Translator;
 class PhpFopenMode extends AbstractParser {
 
     public function parse() {
-        $resultArray = [ProjectOptions::getSpecParserOptions('PhpFopenMode')['header']];
+        $resultArray = [$this->getOptions()['header']];
         $resource = $this->getResource()->getHandler();
 
         $translator = new Translator;
@@ -20,5 +20,22 @@ class PhpFopenMode extends AbstractParser {
         }
         return $resultArray;
     }
+
+    public static function getDefaultOptions() {
+        return [
+            'name' => 'PhpFopenMode',
+            'type' => 'http',
+            'wrapper' => 'html',
+            'src_name' => 'php.net',
+            'src_dir' => 'manual/en',
+            'filename' => 'function.fopen.php',
+            'header' => [
+                        'mode' => 'Mode',
+                        'description' => 'Description'
+            ],
+            'title' => 'PHP. Possible modes for fopen()'
+        ];
+    }
+    
 
 }

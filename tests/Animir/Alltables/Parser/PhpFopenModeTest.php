@@ -14,7 +14,7 @@ class PhpFopenModeTest extends \PHPUnit_Framework_TestCase {
     private $parser;
     
     public function setUp() {
-        $this->parser =  $parser = ParserFactory::factory('PhpFopenMode', ProjectOptions::getAllParsersOptions());
+        $this->parser =  $parser = ParserFactory::factory('PhpFopenMode');
     }
     
     public function testData() {

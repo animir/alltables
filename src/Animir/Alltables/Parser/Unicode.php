@@ -18,8 +18,8 @@ class Unicode extends AbstractParser {
 
         $parser = XmlStringStreamer::createUniqueNodeParser($resource, $options);
         $i = 1;
-        $resultArray = [ProjectOptions::getSpecParserOptions('unicode')['header']];
-        while (($charInfo = $parser->getNode()) && $i <= ProjectOptions::getSpecParserOptions('unicode')['cnt_rows']) {
+        $resultArray = [$this->getOptions()['header']];
+        while (($charInfo = $parser->getNode()) && $i <= $this->getOptions()['cnt_rows']) {
             $i++;
             $simpleXmlNode = simplexml_load_string($charInfo);
             $attrs = $simpleXmlNode->attributes();
@@ -41,6 +41,29 @@ class Unicode extends AbstractParser {
         }
         
         return $resultArray;
+    }
+    
+    public static function getDefaultOptions() {
+        return [
+            'name' => 'unicode', // *
+            'type' => 'ftp', // *
+            'wrapper' => 'zip', // *
+            'src_name' => 'www.unicode.org', // *
+            'src_dir' => 'Public/UCD/latest/ucdxml',
+            'filename' => 'ucd.nounihan.flat.zip',
+            'filename_in_arch' => 'ucd.nounihan.flat.xml',
+            'cnt_rows' => 512,
+            'header' /* * */ => ['cp' => 'Code point', 
+                         'sym' => 'Symbol', 
+                         'html' => 'HTML spec', 
+                         'htmldec' => 'HTML numerical', 
+                         'url' => 'URL encode' ,
+                         'na' => 'Name'
+                                ],
+            'imp_fields' => ['sym'],// *
+            'title' => 'Unicode', // *
+            //'expire' => 
+        ];
     }
 
 }

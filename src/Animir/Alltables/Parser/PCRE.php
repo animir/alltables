@@ -17,7 +17,7 @@ class PCRE extends AbstractParser {
 
     public function parse() {
         $tableArray = new TableArray();
-        $tableArray->addRow(ProjectOptions::getSpecParserOptions('PCRE')['header']);
+        $tableArray->addRow($this->getOptions()['header']);
         $resource = $this->getResource()->getHandler();
         $mandoc = stream_get_contents($resource);
         $groff = new Groff();
@@ -56,6 +56,22 @@ class PCRE extends AbstractParser {
 
 
         return $tableArray->getArray();
+    }
+    
+    public static function getDefaultOptions() {
+        return [
+            'name' => 'PCRE',
+            'type' => 'http',
+            'wrapper' => 'txt',
+            'src_name' => 'pcre.org',
+            'src_dir' => '',
+            'filename' => 'pcre.txt',
+            'header' => [
+                'char' => 'Character | Quantifier',
+                'legend' => 'Legend'
+            ],
+            'title' => 'PCRE'
+        ];
     }
 
 }

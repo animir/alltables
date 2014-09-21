@@ -25,6 +25,12 @@ abstract class AbstractParser {
      */
     abstract public function parse();
     
+    /**
+     * Get array of options for parser
+     * 
+     * @return array
+     */
+    abstract public static function getDefaultOptions();
     
     /**
      * Filter $array according to 'header' param in ProjectOptions
@@ -163,5 +169,25 @@ abstract class AbstractParser {
             $this->options = $options;            
         }
     }
+    
+    /**
+    * Get positions of important fields in array
+    * 
+    * @return array
+    */
+    public function getImpFieldsPositions() {
+        if (isset($this->getOptions()['imp_fields'])) {
+            $fields = array_keys($this->getOptions()['header']);
+            $impFieldsNumArray = [];
+            foreach ($this->getOptions()['imp_fields'] as $impField) {
+                if (($pos = array_search($impField, $fields)) !== false) {
+                    $impFieldsNumArray[] = $pos;
+                }
+            }
+            return $impFieldsNumArray;
+        }
+        return [];
+    }
+
 }
 
