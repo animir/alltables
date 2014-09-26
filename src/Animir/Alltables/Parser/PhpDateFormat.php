@@ -37,7 +37,13 @@ class PhpDateFormat extends AbstractParser {
         $table = $pageDataXml->xpath("//div[@id='refsect1-function.date-parameters']//table[@class='doctable table']");
         $tableDataArray = $translator->xml2array($table[0]);
         foreach($tableDataArray['tbody']['tr'] as $row) {
-            $tableArrayClass->addRow([ $row['td'][0]['text'], trim($row['td'][1]['text']), trim($row['td'][2]['text']) ]);
+            $row = [ trim($row['td'][0]['text']), trim($row['td'][1]['text']), trim($row['td'][2]['text']) ];
+            if ($row[1] === '---' && $row[1] === $row[2]) {
+                //h2
+                $tableArrayClass->addSubHeader($row[0]);
+            } else {
+                $tableArrayClass->addRow();
+            }            
         }
         return $tableArrayClass->getArray();
     }
