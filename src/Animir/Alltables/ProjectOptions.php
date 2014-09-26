@@ -17,6 +17,7 @@ class ProjectOptions {
     static protected $parsers = [
         'Unicode',
         'PhpFopenMode',
+        'PhpDateFormat',
         'PCRE'
     ];
     /**
