@@ -42,7 +42,7 @@ class PhpDateFormat extends AbstractParser {
                 //h2
                 $tableArrayClass->addSubHeader($row[0]);
             } else {
-                $tableArrayClass->addRow();
+                $tableArrayClass->addRow($row);
             }            
         }
         return $tableArrayClass->getArray();
