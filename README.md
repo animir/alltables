@@ -8,7 +8,7 @@ You can add any table you want.
 # Create new parser
 To create new table you must:
 
-1. __Create new class__ in dir 'src/Animir/Alltables/Parser/' and extends it from AbstractParser:
+1) __Create new class__ in dir 'src/Animir/Alltables/Parser/' and extends it from AbstractParser:
 
 ```php
 class Unicode extends AbstractParser {
@@ -26,10 +26,10 @@ class Unicode extends AbstractParser {
 }
 ```
 Abstract class AbstractParser require to realize two functions:
-* static function getDefaultOptions() - get array of options for parse data, such as: source uri, columns naming or using wrapper for read data
-* function parse() - it return array of data (you can read about details below)
+   * static function getDefaultOptions() - get array of options for parse data, such as: source uri, columns naming or using wrapper for read data
+   * function parse() - it return array of data (you can read about details below)
 
-2. __Fill array with options__. Now you can use next options:
+2) __Fill array with options__. Now you can use next options:
 
 | Option | Description | Example | Required |
 | ------------ | ------------- | ------------- | ------------- |
