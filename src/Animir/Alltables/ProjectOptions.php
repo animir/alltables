@@ -12,7 +12,9 @@ class ProjectOptions {
     static protected $projectOptions = [
             'save_path' => '/tmp/',
             'file_ext' => 'allt',
-            'expire' => 86400 // 60*60*24
+            'expire' => 86400, // 60*60*24
+            'test_url' => 'alltables.info/test',
+            'test_site' => 'alltables.info'
     ];
     static protected $parsers = [
         'Unicode',
@@ -34,6 +36,15 @@ class ProjectOptions {
      */
     public static function isParserActive($name) {
        return in_array(ucfirst($name), self::$parsers); 
+    }
+    
+     /**
+     * Get project option
+     * 
+     * @return mixed
+     */   
+    public static function getProjectOption($name) {
+        return isset(self::$projectOptions[$name]) ? self::$projectOptions[$name] : null;
     }
     
     /**
