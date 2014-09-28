@@ -44,3 +44,25 @@ Abstract class AbstractParser require to realize two functions:
 |`header` | Array of header cells of table (count equals to count of columns) | `['cp' => 'Code point', 'sym' => 'Symbol', 'html' => 'HTML spec', 'htmldec' => 'HTML numerical', 'url' => 'URL encode', 'na' => 'Name']` | |
 |`imp_fields` | Distinguished columns in table (have larg font size) | `['sym']` | |
 |`expire` | Expire of cache table data in seconds | `3600` | |
+
+Some options that not exists, can be added.
+
+3) If private function with name `get . ucfirst($options['type']) . ucfirst($options['wrapper'])) . Handler` exists in
+__class `Resource`__  (forexample, `getFtpZipHandler`), you need no anything to do in this case. 
+Otherwise, you must add such function. It have no paramters (all parameters get from options in ).
+It returns a file pointer resource on success or `false` on error.
+Example:
+
+```php
+private function getFtpZipHandler() {
+    $ftpConnId = ftp_connect($this->options['src_name']);
+    ftp_login($ftpConnId, 'anonymous', 'none');
+    ftp_chdir($ftpConnId, $this->options['src_dir']);
+    $tmpResource = fopen(sys_get_temp_dir() . '/' . $this->options['filename'], 'wb');
+    ftp_fget($ftpConnId, $tmpResource, $this->options['filename'], FTP_BINARY, 0);
+    fclose($tmpResource);
+    return fopen($this->options['wrapper'] . '://' . sys_get_temp_dir() . '/' . $this->options['filename'] . '#' . $this->options['filename_in_arch'], 'rb');
+}
+```
+
+4) Declare __public function parse()__. It returns array of data with header of table in first element.
