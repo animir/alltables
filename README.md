@@ -6,7 +6,6 @@ It consist of parser classes and some helpful classes for save and load data.
 You can add any table you want.
 
 # Create new parser
-To create new table you must:
 
 1) __Create new class__ in dir 'src/Animir/Alltables/Parser/' and extends it from AbstractParser:
 
