@@ -20,6 +20,7 @@ class ProjectOptions {
         'Unicode',
         'PhpFopenMode',
         'PhpDateFormat',
+        'PhpCurlOptions',
         'PCRE'
     ];
     /**

@@ -4,13 +4,23 @@ namespace Animir\Alltables\Parser;
 use Animir\Alltables\ProjectOptions;
 
 /**
+ * Interface for parser
+ * @package alltables
+ * @author animir <animir@ya.ru>
+ */
+
+interface iParser {
+    public static function getDefaultOptions();
+}
+
+/**
  * Abstract class for any parser
  * 
  * @package alltables
  * @author animir <animir@ya.ru>
  */
 
-abstract class AbstractParser {
+abstract class AbstractParser implements iParser{
 
     protected $options;
     
@@ -19,12 +29,6 @@ abstract class AbstractParser {
      */
     protected $resource;
     
-     /**
-     * Get array of options for parser
-     * 
-     * @return array
-     */
-    abstract public static function getDefaultOptions();
     
     /**
      * Parse resource with config from ProjectOptions class and return data
