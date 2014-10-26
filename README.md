@@ -3,7 +3,7 @@ alltables
 
 This repo is core of alltables.info project.
 It consist of parser classes and some helpful classes for save and load data.
-You can add any table you want.
+You can add any table what you want.
 
 # Create new parser
 
@@ -44,11 +44,11 @@ Abstract class AbstractParser require to realize two functions:
 |`imp_fields` | Distinguished columns in table (have larg font size) | `['sym']` | |
 |`expire` | Expire of cache table data in seconds | `3600` | |
 
-Some options that not exists, can be added.
+Options that not exists, can be added.
 
 3) If private function with name `get . ucfirst($options['type']) . ucfirst($options['wrapper'])) . Handler` exists in
 __class `Resource`__  (forexample, `getFtpZipHandler`), you need no anything to do in this case. 
-Otherwise, you must add such function. It have no paramters (all parameters get from options in ).
+Otherwise, you must add such function. It have no paramters (all parameters get from options).
 It returns a file pointer resource on success or `false` on error.
 Example:
 
