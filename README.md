@@ -64,4 +64,30 @@ private function getFtpZipHandler() {
 }
 ```
 
-4) Declare __public function parse()__. It returns array of data with header of table in first element.
+4) Declare __public function parse()__. It returns array of data with header of table in first element. Count of columns must be equal to count of elements in `header` array in options. You can use simple class `TableArray` to add row, header, subheader etc.
+Example code parsing table from php.net with curl options:
+```php
+        $tableArrayClass = new TableArray();
+        $tableArrayClass->addRow($this->getOptions()['header']);
+
+        $resource = $this->getResource()->getHandler(); // use function by `type` and `wrapper` from options
+        $translator = new Translator; // simple class for work with DOM, XML, HTML
+        $sourceContent = stream_get_contents($resource);
+        $sourceContent = Helper::removeTags($sourceContent, ["strong", "code", "em"]); // use helper for remove tags from html
+        $pageDataXml = $translator->getXmlFromString($sourceContent);
+        $tables = $pageDataXml->xpath("//div[@id='refsect1-function.curl-setopt-parameters']//table[@class='doctable informaltable']");
+        foreach ($tables as $table) { // prepare array
+            $tableDataArray = $translator->xml2array($table);
+            foreach ($tableDataArray['tbody']['tr'] as $row) {
+                $array = [
+                    trim($row['td'][0]['text']),
+                    trim($row['td'][1]['text']),
+                    trim($row['td'][2]['text'])
+                ];
+                $tableArrayClass->addRow($array);
+            }
+        }
+
+        return $tableArrayClass->getArray();
+```
+
