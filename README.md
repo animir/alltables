@@ -47,6 +47,32 @@ Abstract class AbstractParser require to realize two functions:
 
 Options that not exists, can be added.
 
+Example:
+```php
+    public static function getDefaultOptions() {
+        return [
+            'name' => 'unicode', // *
+            'type' => 'ftp', // *
+            'wrapper' => 'zip', // *
+            'src_name' => 'www.unicode.org', // *
+            'src_dir' => 'Public/UCD/latest/ucdxml',
+            'filename' => 'ucd.nounihan.flat.zip',
+            'filename_in_arch' => 'ucd.nounihan.flat.xml',
+            'cnt_rows' => 512,
+            'header' /* * */ => ['cp' => 'Code point', 
+                         'sym' => 'Symbol', 
+                         'html' => 'HTML spec', 
+                         'htmldec' => 'HTML numerical', 
+                         'url' => 'URL encode' ,
+                         'na' => 'Name'
+                                ],
+            'imp_fields' => ['sym'],// *
+            'title' => 'Unicode', // *
+            //'expire' => 
+        ];
+    }
+```
+
 3) If private function with name `get . ucfirst($options['type']) . ucfirst($options['wrapper'])) . Handler` exists in
 __class `Resource`__  (forexample, `getFtpZipHandler`), you need no anything to do in this case. 
 Otherwise, you must add such function. It have no paramters (all parameters get from options).
