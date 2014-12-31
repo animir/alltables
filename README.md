@@ -10,6 +10,7 @@ You can add any table what you want.
 1) __Create new class__ in dir 'src/Animir/Alltables/Parser/' and extends it from AbstractParser:
 
 ```php
+namespace Animir\Alltables\Parser;
 class Unicode extends AbstractParser {
     public static function getDefaultOptions() {
         return [
