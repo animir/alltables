@@ -91,7 +91,19 @@ private function getFtpZipHandler() {
 }
 ```
 
-4) Declare __public function parse()__. It returns array of data with header of table in first element. Count of columns must be equal to count of elements in `header` array in options. You can use simple class `TableArray` to add row, header, subheader etc.
+4) Add new parser name to $parsers static protected array of ProjectOptions class.
+```php
+    static protected $parsers = [
+        'Unicode',
+        'PhpFopenMode',
+        'PhpDateFormat',
+        'PhpCurlOptions',
+        'PCRE',
+	    'Composer'
+    ];
+```
+
+5) Declare __public function parse()__. It returns array of data with header of table in first element. Count of columns must be equal to count of elements in `header` array in options. You can use simple class `TableArray` to add row, header, subheader etc.
 Example code parsing table from php.net with curl options:
 ```php
         $tableArrayClass = new TableArray();
