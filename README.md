@@ -130,3 +130,7 @@ Example code parsing table from php.net with curl options:
         return $tableArrayClass->getArray();
 ```
 
+6) Check, how new table will be display on alltables.info using 'showTable.php' script.
+For example: 'http://alltables.dev/showTable.php?name=composer',
+where 'alltables.dev' local virtual host with 'public' directory as document root.
+
